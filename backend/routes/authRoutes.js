@@ -2,12 +2,9 @@ const { Router } = require("express");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
+const { resolveRole } = require("../utils/roles");
 
 const router = Router();
-
-function resolveRole(email) {
-  return email.endsWith("@nebula-corp.com") ? "Admin" : "Standard";
-}
 
 function signToken(user) {
   const payload = { id: user.id, name: user.name, email: user.email, role: user.role };
@@ -16,12 +13,13 @@ function signToken(user) {
 
 router.post("/signup", async (req, res) => {
   const { name, email, password } = req.body;
+  const normalizedEmail = typeof email === "string" ? email.trim().toLowerCase() : email;
 
-  if (!email || !password) {
+  if (!normalizedEmail || !password) {
     return res.status(400).json({ error: "Email and password are required." });
   }
 
-  if (typeof email !== "string" || !email.includes("@")) {
+  if (typeof normalizedEmail !== "string" || !normalizedEmail.includes("@")) {
     return res.status(400).json({ error: "Invalid email format." });
   }
 
@@ -29,18 +27,18 @@ router.post("/signup", async (req, res) => {
     return res.status(400).json({ error: "Password must be at least 6 characters." });
   }
 
-  const existing = await User.findOne({ where: { email } });
+  const existing = await User.findOne({ where: { email: normalizedEmail } });
   if (existing) {
     return res.status(409).json({ error: "Email already registered." });
   }
 
-  const role = resolveRole(email);
+  const role = resolveRole(normalizedEmail);
   const hashedPassword = bcrypt.hashSync(password, 10);
 
   try {
     const userRecord = await User.create({
       name: name || null,
-      email,
+      email: normalizedEmail,
       password: hashedPassword,
       role,
     });
@@ -59,12 +57,13 @@ router.post("/signup", async (req, res) => {
 
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
+  const normalizedEmail = typeof email === "string" ? email.trim().toLowerCase() : email;
 
-  if (!email || !password) {
+  if (!normalizedEmail || !password) {
     return res.status(400).json({ error: "Email and password are required." });
   }
 
-  const row = await User.findOne({ where: { email } });
+  const row = await User.findOne({ where: { email: normalizedEmail } });
   if (!row || !bcrypt.compareSync(password, row.password)) {
     return res.status(401).json({ error: "Invalid email or password." });
   }
