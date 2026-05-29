@@ -2,7 +2,8 @@ node_modules/
 dist/
 build/
 .env
-*.db
-backend/data/
+backend/cargo.db
+backend/uploads/*
+!backend/uploads/.gitkeep
 .DS_Store
 *.log

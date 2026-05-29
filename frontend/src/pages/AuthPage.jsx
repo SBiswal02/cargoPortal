@@ -6,6 +6,7 @@ import './AuthPage.css';
 export default function AuthPage() {
   const { loginSuccess } = useAuth();
   const [mode, setMode] = useState('login');
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -16,7 +17,8 @@ export default function AuthPage() {
     setError('');
     setLoading(true);
     try {
-      const result = mode === 'login' ? await login(email, password) : await signup(email, password);
+      const result =
+        mode === 'login' ? await login(email, password) : await signup(name, email, password);
       loginSuccess(result);
     } catch (err) {
       setError(err.message);
@@ -52,6 +54,18 @@ export default function AuthPage() {
         </div>
 
         <form onSubmit={handleSubmit} className="auth-form">
+          {mode === 'signup' && (
+            <label>
+              Name
+              <input
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Your name"
+                autoComplete="name"
+              />
+            </label>
+          )}
           <label>
             Email
             <input

@@ -12,7 +12,7 @@ export default function Dashboard() {
   const [uploadMsg, setUploadMsg] = useState('');
   const [uploading, setUploading] = useState(false);
   const fileRef = useRef(null);
-  const isAdmin = user?.role === 'admin';
+  const isAdmin = user?.role === 'Admin';
 
   const loadCargo = useCallback(async () => {
     setError('');

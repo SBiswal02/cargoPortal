@@ -4,12 +4,12 @@ Full-stack cargo manifest portal with JWT authentication, role-based access cont
 
 ## Stack
 
-- **Backend:** Node.js, Express, SQLite (`better-sqlite3`), JWT, bcrypt
+- **Backend:** Node.js, Express, SQLite, Sequelize ORM, JWT, bcrypt, multer
 - **Frontend:** React 18, Vite, React Router
 
 ## Prerequisites
 
-- Node.js 18+
+- Node.js
 - npm
 
 ## Local Setup
@@ -60,10 +60,12 @@ UI runs at `http://localhost:5173` and proxies API calls to the backend.
 ```sql
 users (
   id INTEGER PRIMARY KEY,
+  name TEXT,
   email TEXT UNIQUE,
-  password_hash TEXT,
-  role TEXT CHECK (role IN ('admin', 'standard')),
-  created_at TEXT
+  password TEXT,
+  role TEXT CHECK (role IN ('Admin', 'Standard')),
+  created_at TEXT,
+  updated_at TEXT
 )
 
 cargo (
@@ -98,7 +100,25 @@ Response: `403` — `"Clearance level inadequate."`
 ## Project structure
 
 ```
-backend/          Express API + SQLite
+backend/
+├── config/
+│   └── db.js
+├── models/
+│   ├── User.js
+│   └── Cargo.js
+├── routes/
+│   ├── authRoutes.js
+│   └── cargoRoutes.js
+├── middleware/
+│   ├── authMiddleware.js
+│   └── roleMiddleware.js
+├── utils/
+│   └── parser.js
+├── uploads/
+├── server.js
+├── .env
+└── cargo.db
+
 frontend/         React dashboard
 manifest.txt      Sample cargo manifest
 ```

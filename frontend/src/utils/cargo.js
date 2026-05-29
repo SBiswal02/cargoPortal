@@ -19,7 +19,7 @@ export function sortCargo(rows) {
 }
 
 export function formatWeight(weightKg, role) {
-  if (role === 'admin') {
+  if (role === 'Admin') {
     return `${weightKg.toLocaleString()} KG`;
   }
   const lbs = Math.round(weightKg * LBS_PER_KG);
