@@ -51,11 +51,25 @@ npm run dev
 
 UI runs at `http://localhost:5173` and proxies API calls to the backend.
 
+The login/signup screen is served at `/`. After authentication the frontend routes users by
+role:
+
+- **Admin:** `/admin/dashboard`
+- **Standard:** `/dashboard`
+
+Admins see the manifest **File Upload** control plus the cargo table. Standard users see only
+the cargo table; the upload input/button are not rendered for them.
+
 ### 3. Quick test flow
 
 1. Sign up as `admin@nebula-corp.com` / `password123` → Admin dashboard with **File Upload** and weights in **KG**
 2. Upload the root `manifest.txt`
-3. Log out, sign up as `user@example.com` → Standard dashboard: no upload control in DOM, weights in **LBS**, Earth shipment pinned to bottom
+3. Log out, sign up as `user@example.com` → Standard dashboard: no upload control in DOM, weights in **LBS**, Earth shipments pinned to the bottom
+
+Cargo rows are sorted by weight from heaviest to lightest. The display keeps the source order
+rule consistent for both roles: Admins see stored KG, Standard users see `KG × 2.20462` rounded
+to LBS, and any cargo destined for Earth is pinned below every non-Earth destination regardless
+of weight.
 
 ## Database Schema
 
