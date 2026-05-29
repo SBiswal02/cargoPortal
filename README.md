@@ -1,4 +1,4 @@
-# Intergalactic Cargo Portal
+# IntergalacticCargoPortal - Biswal
 
 Full-stack cargo manifest portal with JWT authentication, role-based access control (Admin / Standard), manifest upload parsing, and a React dashboard.
 
@@ -33,6 +33,8 @@ API runs at `http://localhost:3001`.
 | `/api/cargo` | GET | Any authenticated user | List cargo records |
 
 **Role provisioning:** emails ending in `@nebula-corp.com` become **Admin**; all others are **Standard**. Users cannot choose a role at signup.
+
+The signup endpoint ignores any client-supplied `role` field. Role assignment is made only by the backend from the normalized email address.
 
 **Upload rules:**
 - Only Admins may upload; Standard users receive `403` with `"Clearance level inadequate."`
@@ -124,6 +126,11 @@ curl http://localhost:3001/api/cargo \
 **Run parser tests:**
 ```bash
 cd backend && npm run test:parser
+```
+
+**Run foundation auth tests:**
+```bash
+cd backend && npm run test:auth
 ```
 
 ## Project structure

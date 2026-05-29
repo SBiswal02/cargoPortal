@@ -5,6 +5,7 @@
   "scripts": {
     "start": "node server.js",
     "dev": "node --watch server.js",
+    "test:auth": "node tests/auth.test.js",
     "test:parser": "node tests/parser.test.js"
   },
   "dependencies": {
