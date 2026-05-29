@@ -345,6 +345,9 @@ Task 2 parser tests passed
 
 ## Task 3: Portal Complete
 
+> youtube link: https://youtu.be/MeeMyWa2fDk
+
+
 ### Objective
 
 The objective of Task 3 was to complete the user-facing portal experience. This included login, signup, logout, role-aware dashboard behavior, Admin upload visibility, Standard user restrictions, weight display differences, and cargo table ordering.
@@ -405,25 +408,6 @@ The final pound value is rounded for display.
 The cargo table includes a special display rule for Earth-bound shipments. Even though other cargo records are sorted by weight, shipments with destination `Earth` are pinned to the bottom of the table.
 
 This behavior is implemented in the frontend cargo utility function. Non-Earth records are sorted by descending weight first, then Earth records are appended at the bottom.
-
-### Screen Recording Requirements
-
-The final screen recording should demonstrate:
-
-- Creating a new user.
-- Logging in as Admin.
-- Admin dashboard showing the upload option.
-- Admin dashboard showing weights in KG.
-- Logging out.
-- Logging in as a Standard user.
-- Standard dashboard showing no upload option.
-- Standard dashboard showing weights in LBS.
-- Earth shipment pinned to the bottom of the table.
-
-### Repository Link
-
-```text
-https://github.com/SBiswal02/cargoPortal
 ```
 
 ### Task 3 Files
@@ -434,6 +418,17 @@ https://github.com/SBiswal02/cargoPortal
 - `frontend/src/components/CargoTable.jsx`: Cargo table rendering.
 - `frontend/src/utils/cargo.js`: Weight formatting and cargo sorting.
 - `frontend/src/api.js`: Frontend API calls.
+
+#### Screenshot Attachments
+<!-- the dashboard_auth.png as standard -->
+```text
+Task 3 - Screenshot 1 - Biswal - Standard Dashboard
+```
+![dashboard_auth.png](dashboard_auth.png)
+
+![dashboard_admin.png](dashboard_admin.png)
+
+![login.png](login.png)
 
 ## API Summary
 
