@@ -1,3 +1,5 @@
+// Task 2: manifest parsing — Sector-7 multiplier, round, skip prime weights
+
 function isPrime(n) {
   if (!Number.isInteger(n) || n < 2) return false;
   if (n === 2) return true;
