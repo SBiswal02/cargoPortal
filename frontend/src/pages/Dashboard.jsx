@@ -123,8 +123,8 @@ export default function Dashboard() {
             <h2>Active Shipments</h2>
             <span className="unit-hint">
               {isAdmin
-                ? 'Sorted by KG, heaviest first'
-                : 'Converted to LBS and sorted by source KG'}
+                ? 'Earth pinned, then heaviest first'
+                : 'Earth pinned, converted to LBS'}
             </span>
           </div>
 

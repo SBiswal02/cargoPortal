@@ -15,7 +15,7 @@ export function sortCargo(rows) {
   rest.sort((a, b) => b.weight_kg - a.weight_kg);
   earth.sort((a, b) => b.weight_kg - a.weight_kg);
 
-  return [...rest, ...earth];
+  return [...earth, ...rest];
 }
 
 export function formatWeight(weightKg, role) {

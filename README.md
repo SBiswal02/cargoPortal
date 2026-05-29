@@ -64,11 +64,11 @@ the cargo table; the upload input/button are not rendered for them.
 
 1. Sign up as `admin@nebula-corp.com` / `password123` → Admin dashboard with **File Upload** and weights in **KG**
 2. Upload the root `manifest.txt`
-3. Log out, sign up as `user@example.com` → Standard dashboard: no upload control in DOM, weights in **LBS**, Earth shipments pinned to the bottom
+3. Log out, sign up as `user@example.com` → Standard dashboard: no upload control in DOM, weights in **LBS**, Earth shipments pinned to the top
 
 Cargo rows are sorted by weight from heaviest to lightest. The display keeps the source order
 rule consistent for both roles: Admins see stored KG, Standard users see `KG × 2.20462` rounded
-to LBS, and any cargo destined for Earth is pinned below every non-Earth destination regardless
+to LBS, and any cargo destined for Earth is pinned above every non-Earth destination regardless
 of weight.
 
 ## Database Schema
