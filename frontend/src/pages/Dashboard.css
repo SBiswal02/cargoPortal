@@ -1,0 +1,159 @@
+.dashboard {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 3rem;
+}
+
+.dash-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.dash-eyebrow {
+  margin: 0;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--warn);
+}
+
+.dash-header h1 {
+  margin: 0.25rem 0 0;
+  font-size: 1.75rem;
+}
+
+.dash-user {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.user-email {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.role-badge {
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.role-admin {
+  background: rgba(0, 212, 255, 0.2);
+  color: var(--accent);
+  border: 1px solid var(--accent);
+}
+
+.role-standard {
+  background: rgba(255, 107, 53, 0.15);
+  color: var(--warn);
+  border: 1px solid var(--warn);
+}
+
+.btn-ghost {
+  padding: 0.45rem 0.9rem;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--muted);
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+.btn-ghost:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.upload-panel {
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.upload-panel h2 {
+  margin: 0 0 0.35rem;
+  font-size: 1.1rem;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.upload-panel p {
+  margin: 0 0 1rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.file-input-hidden {
+  display: none;
+}
+
+.btn-upload {
+  padding: 0.65rem 1.25rem;
+  border: none;
+  border-radius: 6px;
+  background: var(--warn);
+  color: var(--bg-deep);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.btn-upload:disabled {
+  opacity: 0.6;
+}
+
+.upload-msg {
+  margin: 0.75rem 0 0;
+  color: var(--success);
+  font-weight: 600;
+}
+
+.table-panel {
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.25rem 1.5rem;
+}
+
+.table-panel-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.table-panel h2 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.unit-hint {
+  color: var(--accent);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.dash-error {
+  color: var(--danger);
+  font-weight: 600;
+}
+
+.loading-rows {
+  color: var(--muted);
+  padding: 2rem 0;
+  text-align: center;
+}

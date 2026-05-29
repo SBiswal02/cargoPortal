@@ -1,0 +1,53 @@
+.table-wrap {
+  overflow-x: auto;
+}
+
+.cargo-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1rem;
+}
+
+.cargo-table th,
+.cargo-table td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+
+.cargo-table th {
+  color: var(--muted);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+}
+
+.cargo-table tbody tr:hover {
+  background: rgba(0, 212, 255, 0.04);
+}
+
+.cargo-table .mono {
+  font-family: 'Orbitron', monospace;
+  font-size: 0.9rem;
+  color: var(--accent);
+}
+
+.weight-cell {
+  font-weight: 700;
+  color: var(--success);
+}
+
+.row-earth td {
+  color: var(--muted);
+}
+
+.row-earth .weight-cell {
+  color: var(--warn);
+}
+
+.empty-table {
+  text-align: center;
+  color: var(--muted);
+  padding: 2rem;
+}
