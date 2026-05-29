@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { fetchCargo, uploadManifest } from '../api';
 import { useAuth } from '../context/AuthContext';
 import CargoTable from '../components/CargoTable';
@@ -13,6 +13,14 @@ export default function Dashboard() {
   const [uploading, setUploading] = useState(false);
   const fileRef = useRef(null);
   const isAdmin = user?.role === 'Admin';
+  const totalWeightKg = useMemo(
+    () => cargo.reduce((sum, row) => sum + Number(row.weight_kg || 0), 0),
+    [cargo]
+  );
+  const earthPinned = useMemo(
+    () => cargo.filter((row) => row.destination === 'Earth').length,
+    [cargo]
+  );
 
   const loadCargo = useCallback(async () => {
     setError('');
@@ -55,7 +63,7 @@ export default function Dashboard() {
       <header className="dash-header">
         <div>
           <p className="dash-eyebrow">Mission Control</p>
-          <h1 className="logo">Cargo Manifest</h1>
+          <h1 className="logo">{isAdmin ? 'Admin Cargo Command' : 'Cargo Registry'}</h1>
         </div>
         <div className="dash-user">
           <span className={`role-badge role-${user.role}`}>{user.role}</span>
@@ -67,10 +75,29 @@ export default function Dashboard() {
       </header>
 
       <main className="dash-main">
+        <section className="mission-strip" aria-label="Cargo summary">
+          <div>
+            <span className="metric-label">Shipments</span>
+            <strong>{cargo.length.toLocaleString()}</strong>
+          </div>
+          <div>
+            <span className="metric-label">{isAdmin ? 'Total KG' : 'Total LBS'}</span>
+            <strong>
+              {isAdmin
+                ? totalWeightKg.toLocaleString()
+                : Math.round(totalWeightKg * 2.20462).toLocaleString()}
+            </strong>
+          </div>
+          <div>
+            <span className="metric-label">Earth Pinned</span>
+            <strong>{earthPinned.toLocaleString()}</strong>
+          </div>
+        </section>
+
         {isAdmin && (
           <section className="upload-panel">
             <h2>Manifest Upload</h2>
-            <p>Admin clearance required · Sector-7 weight multiplier applied server-side</p>
+            <p>Admin clearance required. Upload a plain-text manifest for processing.</p>
             <input
               ref={fileRef}
               type="file"
@@ -95,7 +122,9 @@ export default function Dashboard() {
           <div className="table-panel-head">
             <h2>Active Shipments</h2>
             <span className="unit-hint">
-              {isAdmin ? 'Weights in Kilograms (KG)' : 'Weights in Pounds (LBS)'}
+              {isAdmin
+                ? 'Sorted by KG, heaviest first'
+                : 'Converted to LBS and sorted by source KG'}
             </span>
           </div>
 

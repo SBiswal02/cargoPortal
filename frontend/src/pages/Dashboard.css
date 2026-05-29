@@ -15,6 +15,46 @@
   border-bottom: 1px solid var(--border);
 }
 
+.dash-main {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.mission-strip {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--border);
+}
+
+.mission-strip div {
+  min-width: 0;
+  padding: 1rem 1.25rem;
+  background:
+    linear-gradient(135deg, rgba(61, 255, 154, 0.08), transparent 48%),
+    var(--bg-panel);
+}
+
+.metric-label {
+  display: block;
+  color: var(--muted);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.mission-strip strong {
+  display: block;
+  margin-top: 0.25rem;
+  color: var(--text);
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.4rem;
+}
+
 .dash-eyebrow {
   margin: 0;
   font-size: 0.75rem;
@@ -80,7 +120,6 @@
   border: 1px solid var(--border);
   border-radius: 10px;
   padding: 1.25rem 1.5rem;
-  margin-bottom: 1.5rem;
 }
 
 .upload-panel h2 {
@@ -156,4 +195,18 @@
   color: var(--muted);
   padding: 2rem 0;
   text-align: center;
+}
+
+@media (max-width: 680px) {
+  .dashboard {
+    padding: 1rem;
+  }
+
+  .dash-user {
+    width: 100%;
+  }
+
+  .mission-strip {
+    grid-template-columns: 1fr;
+  }
 }

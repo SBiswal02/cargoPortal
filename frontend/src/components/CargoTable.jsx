@@ -5,7 +5,13 @@ export default function CargoTable({ cargo, role }) {
   const sorted = sortCargo(cargo);
 
   if (sorted.length === 0) {
-    return <p className="empty-table">No cargo records yet. Admins can upload a manifest file.</p>;
+    return (
+      <p className="empty-table">
+        {role === 'Admin'
+          ? 'No cargo records yet. Upload a manifest to populate the registry.'
+          : 'No cargo records are available yet.'}
+      </p>
+    );
   }
 
   return (
