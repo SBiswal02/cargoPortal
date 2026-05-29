@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node server.js",
-    "dev": "node --watch server.js"
+    "dev": "node --watch server.js",
+    "test:parser": "node tests/parser.test.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

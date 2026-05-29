@@ -88,14 +88,43 @@ cargo (
 }
 ```
 
-**Standard user blocked from upload:**
+## Task 2: Upload & Cargo API
+
+| Endpoint | Method | Auth | Description |
+|----------|--------|------|-------------|
+| `/api/upload` | POST | Admin only | Upload `manifest.txt` (field name: `manifest`) |
+| `/api/cargo` | GET | Any authenticated user | List all saved cargo records |
+
+**Processing rules** (`utils/parser.js`):
+- Destination contains `Sector-7` → weight × 1.45, then round to nearest integer
+- If final weight is prime → record is **not** saved
+
+**Standard user blocked from upload (403):**
 ```bash
 curl -X POST http://localhost:3001/api/upload \
-  -H "Authorization: Bearer <standard-user-token>" \
+  -H "Authorization: Bearer <standard-user-jwt-token>" \
   -F "manifest=@manifest.txt"
 ```
 
 Response: `403` — `"Clearance level inadequate."`
+
+**Admin upload:**
+```bash
+curl -X POST http://localhost:3001/api/upload \
+  -H "Authorization: Bearer <admin-user-jwt-token>" \
+  -F "manifest=@manifest.txt"
+```
+
+**Fetch cargo:**
+```bash
+curl http://localhost:3001/api/cargo \
+  -H "Authorization: Bearer <jwt-token>"
+```
+
+**Run parser tests:**
+```bash
+cd backend && npm run test:parser
+```
 
 ## Project structure
 
